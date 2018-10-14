@@ -10,7 +10,7 @@ namespace TodoApi
     {       
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<TodoContext>(opt => opt.UseSqlite("Data Source=todolist.db"));
             services.AddMvc();
 
             // Register the Swagger generator, defining one or more Swagger documents
