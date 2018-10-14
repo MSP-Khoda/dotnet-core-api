@@ -5,17 +5,21 @@ using System.IO;
 namespace TodoApi
 {
     public class Program
+{
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
+        var host = BuildWebHost(args);
 
-            host.Run();
-        }
+        host.Run();
     }
+
+    // Tools will use this to get application services
+    public static IWebHost BuildWebHost(string[] args) =>
+        new WebHostBuilder()
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseIISIntegration()
+            .UseStartup<Startup>()
+            .Build();
+}
 }
